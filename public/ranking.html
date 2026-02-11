@@ -1,0 +1,17 @@
+<h2>🏆 Ranking Global de Referidos</h2>
+
+<ol id="rankingList"></ol>
+
+<a href="/dashboard.html">Volver al Dashboard</a>
+
+<script>
+fetch("/ranking")
+  .then(res => res.json())
+  .then(data => {
+    let html = "";
+    data.forEach(user => {
+      html += `<li>${user.username} - Referidos: ${user.totalReferrals}</li>`;
+    });
+    document.getElementById("rankingList").innerHTML = html;
+  });
+</script>

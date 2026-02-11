@@ -1,0 +1,37 @@
+<h2>👑 Panel Admin - Retiros</h2>
+
+<ul id="withdrawals"></ul>
+
+<script>
+function loadData() {
+  fetch("/admin-withdrawals")
+    .then(res => res.json())
+    .then(data => {
+      let html = "";
+      data.forEach(w => {
+        html += `
+          <li>
+            ${w.username} - ${w.amount} - ${w.status}
+            ${w.status === "pendiente" ? `
+              <button onclick="approve('${w.id}')">Aprobar</button>
+              <button onclick="reject('${w.id}')">Rechazar</button>
+            ` : ""}
+          </li>
+        `;
+      });
+      document.getElementById("withdrawals").innerHTML = html;
+    });
+}
+
+function approve(id) {
+  fetch("/approve/" + id, { method: "POST" })
+    .then(() => loadData());
+}
+
+function reject(id) {
+  fetch("/reject/" + id, { method: "POST" })
+    .then(() => loadData());
+}
+
+loadData();
+</script>

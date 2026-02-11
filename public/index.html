@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsBonusLike Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+    .card {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      width: 300px;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+    button {
+      padding: 10px 20px;
+      background: #00ffcc;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 WhatsBonusLike Panel</h1>
+
+  <div class="card">
+    <h2>Plan Starter</h2>
+    <p>Bonus disponible: <span id="bonus">...</span></p>
+    <button onclick="cargarBonus()">Actualizar</button>
+  </div>
+
+  <script>
+    function cargarBonus() {
+      fetch("/bonus")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("bonus").innerText = data.bonusDisponible;
+        });
+    }
+
+    cargarBonus();
+  </script>
+
+</body>
+</html>

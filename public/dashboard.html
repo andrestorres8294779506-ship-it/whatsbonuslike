@@ -1,0 +1,19 @@
+<h2>Dashboard</h2>
+
+<p>Usuario: <span id="user"></span></p>
+<p>Bonus: <span id="bonus"></span></p>
+
+<form action="/withdraw" method="POST">
+  <button type="submit">💸 Retirar 20 Bonus</button>
+</form>
+
+<a href="/logout">Cerrar sesión</a>
+
+<script>
+fetch("/dashboard-data")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("user").innerText = data.username;
+    document.getElementById("bonus").innerText = data.bonus;
+  });
+</script>

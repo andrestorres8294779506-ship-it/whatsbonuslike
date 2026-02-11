@@ -1,0 +1,16 @@
+<h2>Registro</h2>
+<form action="/register" method="POST">
+  <input name="username" placeholder="Usuario"><br><br>
+  <input name="password" type="password" placeholder="Password"><br><br>
+  <input name="referral" placeholder="Código de referido (opcional)"><br><br>
+  <button type="submit">Crear cuenta</button>
+</form>
+<a href="/login.html">Ir a Login</a>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const ref = params.get("ref");
+if (ref) {
+  document.querySelector("input[name='referral']").value = ref;
+}
+</script>
